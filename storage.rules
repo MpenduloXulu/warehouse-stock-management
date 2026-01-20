@@ -1,0 +1,62 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return isAuthenticated() && 
+             firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Helper function to validate image
+    function isValidImage() {
+      return request.resource.contentType.matches('image/.*') &&
+             request.resource.size < 5 * 1024 * 1024; // 5MB max
+    }
+    
+    // Images folder - for item images, profile pictures, etc.
+    match /images/{imageId} {
+      // Anyone authenticated can read images
+      allow read: if isAuthenticated();
+      
+      // Only admins can upload images
+      allow create: if isAdmin() && isValidImage();
+      
+      // Only admins can delete images
+      allow delete: if isAdmin();
+    }
+    
+    // User uploads folder
+    match /uploads/{userId}/{allPaths=**} {
+      // Users can read their own uploads
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      
+      // Admins can read all uploads
+      allow read: if isAdmin();
+      
+      // Users can upload to their own folder
+      allow create: if isAuthenticated() && request.auth.uid == userId && isValidImage();
+      
+      // Users can delete their own uploads
+      allow delete: if isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Reports folder - for exported reports
+    match /reports/{reportId} {
+      // Anyone authenticated can read reports
+      allow read: if isAuthenticated();
+      
+      // Only admins can create reports
+      allow create: if isAdmin();
+      
+      // Only admins can delete reports
+      allow delete: if isAdmin();
+    }
+  }
+}

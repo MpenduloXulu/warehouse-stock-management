@@ -81,10 +81,10 @@ export default function FirebaseTestPage() {
               <p className="font-semibold mb-2">1. Enable Authentication:</p>
               <ol className="list-decimal list-inside space-y-1 ml-4">
                 <li>Go to <a href="https://console.firebase.google.com/project/warehouse-simulation-89d63/authentication" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Firebase Console - Authentication</a></li>
-                <li>Click "Get Started"</li>
-                <li>Go to "Sign-in method" tab</li>
-                <li>Enable "Email/Password"</li>
-                <li>Click "Save"</li>
+                <li>Click &quot;Get Started&quot;</li>
+                <li>Go to &quot;Sign-in method&quot; tab</li>
+                <li>Enable &quot;Email/Password&quot;</li>
+                <li>Click &quot;Save&quot;</li>
               </ol>
             </div>
 
@@ -92,10 +92,10 @@ export default function FirebaseTestPage() {
               <p className="font-semibold mb-2">2. Enable Firestore Database:</p>
               <ol className="list-decimal list-inside space-y-1 ml-4">
                 <li>Go to <a href="https://console.firebase.google.com/project/warehouse-simulation-89d63/firestore" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Firebase Console - Firestore</a></li>
-                <li>Click "Create database"</li>
-                <li>Choose "Start in test mode"</li>
+                <li>Click &quot;Create database&quot;</li>
+                <li>Choose &quot;Start in test mode&quot;</li>
                 <li>Select your location (e.g., us-central)</li>
-                <li>Click "Enable"</li>
+                <li>Click &quot;Enable&quot;</li>
               </ol>
             </div>
 

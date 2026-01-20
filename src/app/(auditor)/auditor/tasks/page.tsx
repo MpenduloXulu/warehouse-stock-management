@@ -152,7 +152,7 @@ export default function AuditorTasksPage() {
             <div className="text-6xl mb-4">📦</div>
             <p className="text-gray-600 text-lg">No items available</p>
             <p className="text-gray-500 text-sm mt-2">
-              Admin hasn't added any items yet
+              Admin hasn&apos;t added any items yet
             </p>
           </div>
         ) : (

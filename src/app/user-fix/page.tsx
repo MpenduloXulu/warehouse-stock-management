@@ -142,7 +142,7 @@ export default function UserFixPage() {
           <h3 className="font-semibold text-blue-900 mb-2">Instructions:</h3>
           <ol className="list-decimal list-inside space-y-1 text-sm text-blue-800">
             <li>This page shows all users from Firestore</li>
-            <li>Click "Set as Admin" or "Set as Auditor" to change a user's role</li>
+            <li>Click &quot;Set as Admin&quot; or &quot;Set as Auditor&quot; to change a user&apos;s role</li>
             <li>After updating, logout and login again to see the changes</li>
             <li>Admin users access /admin/dashboard</li>
             <li>Auditor users access /auditor/dashboard</li>

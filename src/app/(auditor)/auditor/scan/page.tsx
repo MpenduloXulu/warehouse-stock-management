@@ -153,7 +153,7 @@ export default function AuditorScanPage() {
               <div className="text-6xl mb-4">❌</div>
               <p className="text-gray-600 text-lg">Item not found</p>
               <p className="text-gray-500 text-sm mt-2">
-                No item matches the barcode "{scannedBarcode}"
+                No item matches the barcode &quot;{scannedBarcode}&quot;
               </p>
             </div>
           )}
@@ -183,9 +183,9 @@ export default function AuditorScanPage() {
         <h3 className="font-semibold text-blue-900 mb-2">📱 How to Scan</h3>
         <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
           <li>Enter barcode manually and press Search</li>
-          <li>Click "Open Camera Scanner" to use device camera (coming soon)</li>
+          <li>Click &quot;Open Camera Scanner&quot; to use device camera (coming soon)</li>
           <li>Use external barcode scanner connected to your device</li>
-          <li>Search by item name if you don't have the barcode</li>
+          <li>Search by item name if you don&apos;t have the barcode</li>
         </ul>
       </div>
     </div>

@@ -110,7 +110,7 @@ export default function TasksPage() {
             <div className="text-6xl mb-4">📋</div>
             <p className="text-gray-600 text-lg">No tasks found</p>
             <p className="text-gray-500 text-sm mt-2">
-              Click "Create New Task" to assign stock-taking tasks to auditors
+              Click &quot;Create New Task&quot; to assign stock-taking tasks to auditors
             </p>
           </div>
         ) : (

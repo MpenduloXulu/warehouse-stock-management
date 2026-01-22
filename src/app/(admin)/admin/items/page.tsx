@@ -80,7 +80,7 @@ export default function ItemsManagementPage() {
             <div>
               <p className="text-sm font-medium text-green-600">In Stock</p>
               <p className="text-3xl font-bold text-green-900 mt-2">
-                {loading ? '...' : items.filter(i => i.quantity > 0).length}
+                {loading ? '...' : items.filter(i => i.expectedQuantity > 0).length}
               </p>
             </div>
             <div className="text-4xl">✅</div>
@@ -92,7 +92,7 @@ export default function ItemsManagementPage() {
             <div>
               <p className="text-sm font-medium text-red-600">Out of Stock</p>
               <p className="text-3xl font-bold text-red-900 mt-2">
-                {loading ? '...' : items.filter(i => i.quantity === 0).length}
+                {loading ? '...' : items.filter(i => i.expectedQuantity === 0).length}
               </p>
             </div>
             <div className="text-4xl">⚠️</div>
@@ -104,7 +104,7 @@ export default function ItemsManagementPage() {
             <div>
               <p className="text-sm font-medium text-yellow-600">Low Stock</p>
               <p className="text-3xl font-bold text-yellow-900 mt-2">
-                {loading ? '...' : items.filter(i => i.quantity > 0 && i.quantity < 10).length}
+                {loading ? '...' : items.filter(i => i.expectedQuantity > 0 && i.expectedQuantity < 10).length}
               </p>
             </div>
             <div className="text-4xl">📉</div>
@@ -200,11 +200,11 @@ export default function ItemsManagementPage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <span className={`text-sm font-medium ${
-                          item.quantity === 0 ? 'text-red-600' :
-                          item.quantity < 10 ? 'text-yellow-600' :
+                          item.expectedQuantity === 0 ? 'text-red-600' :
+                          item.expectedQuantity < 10 ? 'text-yellow-600' :
                           'text-green-600'
                         }`}>
-                          {item.quantity} {item.unit || 'units'}
+                          {item.expectedQuantity} {item.unit || 'units'}
                         </span>
                       </div>
                     </td>
@@ -277,7 +277,7 @@ function ItemFormModal({
     name: item?.name || '',
     barcode: item?.barcode || '',
     category: item?.category || '',
-    quantity: item?.quantity || 0,
+    quantity: item?.expectedQuantity || 0,
     unit: item?.unit || 'units',
     expiryDate: item?.expiryDate || '',
     location: item?.location || '',

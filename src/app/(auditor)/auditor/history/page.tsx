@@ -132,10 +132,10 @@ export default function AuditorHistoryPage() {
                       )}
                     </div>
 
-                    {task.adminNotes && (
+                    {task.rejectionReason && (
                       <div className="mt-3 p-3 bg-white rounded border border-gray-200">
-                        <p className="text-xs font-medium text-gray-700 mb-1">Admin Notes:</p>
-                        <p className="text-sm text-gray-600">{task.adminNotes}</p>
+                        <p className="text-xs font-medium text-gray-700 mb-1">Rejection Reason:</p>
+                        <p className="text-sm text-gray-600">{task.rejectionReason}</p>
                       </div>
                     )}
                   </div>

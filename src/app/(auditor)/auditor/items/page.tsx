@@ -12,7 +12,7 @@ export default function AuditorItemsPage() {
   // Filter items based on search and category
   const filteredItems = items.filter(item => {
     const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.barcode?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.barcodes?.some(b => b.toLowerCase().includes(searchQuery.toLowerCase())) ||
       item.location?.toLowerCase().includes(searchQuery.toLowerCase());
     
     const matchesCategory = !selectedCategory || item.category === selectedCategory;

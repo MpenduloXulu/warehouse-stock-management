@@ -1,0 +1,34 @@
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = ".next"
+
+[dev]
+  command = "npm run dev"
+  port = 3000
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[context.production]
+  command = "npm run build"
+  publish = ".next"
+
+[context.preview]
+  command = "npm run build"
+  publish = ".next"
+
+[context.deploy-preview]
+  command = "npm run build"
+  publish = ".next"
+
+[context.branch-deploy]
+  command = "npm run build"
+  publish = ".next"

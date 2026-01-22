@@ -271,15 +271,15 @@ function ItemFormModal({
 }: { 
   item: Item | null; 
   onClose: () => void; 
-  onSave: (data: Partial<Item>) => Promise<void>;
+  onSave: (data: any) => Promise<void>;
 }) {
-  const [formData, setFormData] = useState<Partial<Item>>({
+  const [formData, setFormData] = useState({
+    sku: item?.sku || '',
     name: item?.name || '',
-    barcode: item?.barcode || '',
+    barcodes: item?.barcodes || [],
     category: item?.category || '',
-    quantity: item?.expectedQuantity || 0,
+    expectedQuantity: item?.expectedQuantity || 0,
     unit: item?.unit || 'units',
-    expiryDate: item?.expiryDate || '',
     location: item?.location || '',
     description: item?.description || '',
     imageUrl: item?.imageUrl || '',
@@ -307,6 +307,21 @@ function ItemFormModal({
 
         <form onSubmit={handleSubmit} className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* SKU */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                SKU *
+              </label>
+              <input
+                type="text"
+                value={formData.sku}
+                onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                placeholder="e.g., SKU-001"
+                required
+              />
+            </div>
+
             {/* Item Name */}
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -321,17 +336,17 @@ function ItemFormModal({
               />
             </div>
 
-            {/* Barcode */}
+            {/* Barcodes */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Barcode
+                Barcodes (comma-separated)
               </label>
               <input
                 type="text"
-                value={formData.barcode}
-                onChange={(e) => setFormData({ ...formData, barcode: e.target.value })}
+                value={formData.barcodes?.join(', ') || ''}
+                onChange={(e) => setFormData({ ...formData, barcodes: e.target.value.split(',').map(b => b.trim()).filter(b => b) })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-                placeholder="e.g., 1234567890123"
+                placeholder="e.g., 1234567890123, 9876543210987"
               />
             </div>
 
@@ -356,15 +371,15 @@ function ItemFormModal({
               </select>
             </div>
 
-            {/* Quantity */}
+            {/* Expected Quantity */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Quantity *
+                Expected Quantity *
               </label>
               <input
                 type="number"
-                value={formData.quantity}
-                onChange={(e) => setFormData({ ...formData, quantity: parseInt(e.target.value) || 0 })}
+                value={formData.expectedQuantity}
+                onChange={(e) => setFormData({ ...formData, expectedQuantity: parseInt(e.target.value) || 0 })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
                 min="0"
                 required
@@ -390,18 +405,6 @@ function ItemFormModal({
               </select>
             </div>
 
-            {/* Expiry Date */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Expiry Date
-              </label>
-              <input
-                type="date"
-                value={formData.expiryDate}
-                onChange={(e) => setFormData({ ...formData, expiryDate: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-              />
-            </div>
 
             {/* Location */}
             <div>

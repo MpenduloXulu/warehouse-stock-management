@@ -209,7 +209,7 @@ export default function ItemsManagementPage() {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {item.expiryDate ? new Date(item.expiryDate).toLocaleDateString() : '-'}
+                      {item.createdAt ? new Date(item.createdAt).toLocaleDateString() : '-'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {item.location || '-'}

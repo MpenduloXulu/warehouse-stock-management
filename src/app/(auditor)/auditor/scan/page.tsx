@@ -15,7 +15,7 @@ export default function AuditorScanPage() {
     if (!scannedBarcode.trim()) return;
 
     const item = items.find(i => 
-      i.barcode?.toLowerCase() === scannedBarcode.toLowerCase()
+      i.barcodes?.some(b => b.toLowerCase() === scannedBarcode.toLowerCase())
     );
 
     setSearchResult(item || null);
@@ -26,7 +26,7 @@ export default function AuditorScanPage() {
 
     const item = items.find(i => 
       i.name.toLowerCase().includes(scannedBarcode.toLowerCase()) ||
-      i.barcode?.toLowerCase().includes(scannedBarcode.toLowerCase())
+      i.barcodes?.some(b => b.toLowerCase().includes(scannedBarcode.toLowerCase()))
     );
 
     setSearchResult(item || null);

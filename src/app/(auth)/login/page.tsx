@@ -39,7 +39,9 @@ export default function LoginPage() {
         if (roleCookie) {
           const cookieRole = roleCookie.split('=')[1];
           console.log('Role from cookie:', cookieRole);
-          if (!userRole) userRole = cookieRole;
+          if (!userRole && (cookieRole === 'admin' || cookieRole === 'auditor')) {
+            userRole = cookieRole as 'admin' | 'auditor';
+          }
         }
         
         console.log('Final determined role:', userRole);

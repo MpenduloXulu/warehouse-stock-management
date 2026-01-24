@@ -50,7 +50,7 @@ export default function AuditorItemsPage() {
             <div>
               <p className="text-sm font-medium text-green-600">In Stock</p>
               <p className="text-3xl font-bold text-green-900 mt-2">
-                {loading ? '...' : items.filter(i => i.quantity > 0).length}
+                {loading ? '...' : items.filter(i => i.expectedQuantity > 0).length}
               </p>
             </div>
             <div className="text-4xl">✅</div>
@@ -62,7 +62,7 @@ export default function AuditorItemsPage() {
             <div>
               <p className="text-sm font-medium text-red-600">Out of Stock</p>
               <p className="text-3xl font-bold text-red-900 mt-2">
-                {loading ? '...' : items.filter(i => i.quantity === 0).length}
+                {loading ? '...' : items.filter(i => i.expectedQuantity === 0).length}
               </p>
             </div>
             <div className="text-4xl">⚠️</div>

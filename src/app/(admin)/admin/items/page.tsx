@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { Card } from '@/components/shared/ui/Card';
 import { Button } from '@/components/shared/ui/Button';
@@ -176,9 +177,9 @@ export default function ItemsManagementPage() {
                   <tr key={item.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="h-10 w-10 flex-shrink-0 bg-gray-200 rounded-lg flex items-center justify-center">
+                        <div className="h-10 w-10 flex-shrink-0 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
                           {item.imageUrl ? (
-                            <img src={item.imageUrl} alt={item.name} className="h-10 w-10 rounded-lg object-cover" />
+                            <Image src={item.imageUrl} alt={item.name} width={40} height={40} className="rounded-lg object-cover" />
                           ) : (
                             <span className="text-gray-500 text-xl">📦</span>
                           )}

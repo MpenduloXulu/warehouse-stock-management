@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { itemsService } from '@/lib/services/items.service';
 import { Item, CreateItemInput, UpdateItemInput, ItemSearchFilters } from '@/types';
 
@@ -7,7 +7,7 @@ export const useItems = (filters?: ItemSearchFilters) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchItems = async () => {
+  const fetchItems = useCallback(async () => {
     try {
       setLoading(true);
       const data = filters
@@ -20,11 +20,11 @@ export const useItems = (filters?: ItemSearchFilters) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
 
   useEffect(() => {
     fetchItems();
-  }, [JSON.stringify(filters)]);
+  }, [fetchItems]);
 
   const createItem = async (data: CreateItemInput, userId: string) => {
     try {

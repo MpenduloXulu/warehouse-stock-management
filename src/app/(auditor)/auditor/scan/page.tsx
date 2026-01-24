@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Card } from '@/components/shared/ui/Card';
 import { Button } from '@/components/shared/ui/Button';
 import { useItems } from '@/hooks/useItems';
@@ -82,11 +83,13 @@ export default function AuditorScanPage() {
           {searchResult ? (
             <div className="space-y-4">
               <div className="flex items-start gap-6">
-                <div className="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                   {searchResult.imageUrl ? (
-                    <img 
+                    <Image 
                       src={searchResult.imageUrl} 
                       alt={searchResult.name} 
+                      width={128}
+                      height={128}
                       className="w-full h-full object-cover rounded-lg" 
                     />
                   ) : (

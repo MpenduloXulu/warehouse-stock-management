@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { tasksService } from '@/lib/services/tasks.service';
 import { Task, CreateTaskInput, UpdateTaskInput, TaskFilters } from '@/types';
 
@@ -7,7 +7,7 @@ export const useTasks = (filters?: TaskFilters) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     try {
       setLoading(true);
       const data = filters
@@ -20,11 +20,11 @@ export const useTasks = (filters?: TaskFilters) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
 
   useEffect(() => {
     fetchTasks();
-  }, [JSON.stringify(filters)]);
+  }, [fetchTasks]);
 
   const createTask = async (data: CreateTaskInput, userId: string, userName: string) => {
     try {

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Card } from '@/components/shared/ui/Card';
 import { Button } from '@/components/shared/ui/Button';
 import { useAuth } from '@/context/AuthContext';
@@ -163,11 +164,13 @@ export default function AuditorTasksPage() {
                 className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow bg-white"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                     {item.imageUrl ? (
-                      <img 
+                      <Image 
                         src={item.imageUrl} 
                         alt={item.name} 
+                        width={80}
+                        height={80}
                         className="w-full h-full object-cover rounded-lg" 
                       />
                     ) : (
